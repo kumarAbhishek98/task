@@ -2,7 +2,7 @@ import React from "react";
 import { InputLabel, TextField, Typography } from "@mui/material";
 import useStyles from "../../pages/styles";
 
-const CommonInput = ({
+const CustomInput = ({
   label,
   placeholder,
   password,
@@ -15,7 +15,7 @@ const CommonInput = ({
   const classes = useStyles();
   return (
     <Typography sx={{ mb: 2 }}>
-      <InputLabel className={classes.commonInput}>
+      <InputLabel Label className={classes.commonInput}>
         <Typography className={classes.commonLabel}>{label}</Typography>
         {password && (
           <Typography
@@ -46,4 +46,4 @@ const CommonInput = ({
   );
 };
 
-export default CommonInput;
+export default CustomInput;

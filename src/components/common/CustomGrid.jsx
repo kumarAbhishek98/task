@@ -6,7 +6,7 @@ import useStyles from "../../pages/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-const CommonGrid = ({ children, postAJob, signUp }) => {
+const CustomGrid = ({ children, postAJob, signUp }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const homeHandler = () => {
@@ -36,4 +36,4 @@ const CommonGrid = ({ children, postAJob, signUp }) => {
   );
 };
 
-export default CommonGrid;
+export default CustomGrid;

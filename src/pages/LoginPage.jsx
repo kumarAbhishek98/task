@@ -4,13 +4,11 @@ import {
   Card,
   CardContent,
   Grid,
-  InputLabel,
-  TextField,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../components/NavBar";
-import Input from "../components/common/Input";
+import InputField from "../components/common/InputField";
 import useStyles from "./styles";
 import { useNavigate } from "react-router-dom";
 import { LoginService } from "../services/AuthServices";
@@ -19,6 +17,10 @@ const LoginPage = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({});
+  const [err, setError] = useState({
+    isError: false,
+    errMessage: ""
+  })
 
   const onInputChange = (name, value) => {
     setUserData({
@@ -27,13 +29,30 @@ const LoginPage = () => {
     });
   };
 
+
   const onSubmit = async () => {
     const res = await LoginService(userData);
+    console.log("res", res)
     if (res?.success) {
       localStorage.setItem("token", res.data.token);
       navigate("/login/jobsPosted");
+    } else {
+      setError({
+        ...err,
+        isError: true,
+        errMessage: "Wrong Email or Password"
+      })
     }
   };
+  useEffect(() => {
+    return () => {
+      setError({
+        ...err,
+        isError: false,
+        errMessage: ""
+      })
+    }
+  }, [userData])
   return (
     <>
       <NavBar />
@@ -44,14 +63,15 @@ const LoginPage = () => {
               Login
             </Typography>
             <Typography variant="body2">
-              <Input
+              <InputField 
                 label="Email address"
                 placeholder="Enter your email"
                 value={userData.email}
                 onInputChange={onInputChange}
                 propName="email"
+                isError={err.isError}
               />
-              <Input
+              <InputField 
                 label="Password"
                 placeholder="Enter your password"
                 password={true}
@@ -59,6 +79,8 @@ const LoginPage = () => {
                 onInputChange={onInputChange}
                 propName="password"
                 handleForgetPassword={() => navigate("/forgotPassword")}
+                isError={err.isError}
+                errMessage={err.errMessage}
               />
               <Typography className={classes.loginCard}>
                 <Button

@@ -2,7 +2,7 @@ import React from "react";
 import { InputLabel, TextField, Typography } from "@mui/material";
 import useStyles from "../../pages/styles";
 
-const Input = ({
+const InputField = ({
   label,
   placeholder,
   password,
@@ -10,13 +10,15 @@ const Input = ({
   propName,
   value,
   handleForgetPassword,
+  isError,
+  errMessage
 }) => {
   const classes = useStyles();
 
   return (
     <>
       <Typography sx={{ mb: 2 }}>
-        <InputLabel
+        <InputLabel Label
           sx={{
             width: "420px",
             //   fontWeight: "600",
@@ -48,10 +50,12 @@ const Input = ({
           value={value}
           type={label === "Password" ? "password" : "text"}
           onChange={(e) => onInputChange(propName, e.target.value)}
+          error={isError}
+          helperText={errMessage}
         />
       </Typography>
     </>
   );
 };
 
-export default Input;
+export default InputField;

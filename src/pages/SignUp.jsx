@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../components/NavBar";
-import CommonGrid from "../components/common/CommonGrid";
+import CustomGrid from "../components/common/CustomGrid";
 import {
   Button,
   CardContent,
@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import CommonInput from "../components/common/CommonInput";
+import CustomInput from "../components/common/CustomInput";
 import useStyles from "./styles";
 import PersonSearchIcon from "@mui/icons-material/PersonSearch";
 import PeopleAltIcon from "@mui/icons-material/PeopleAlt";
@@ -20,7 +20,7 @@ const SignUp = () => {
   return (
     <>
       <NavBar login={true} />
-      <CommonGrid signUp={true}>
+      <CustomGrid signUp={true}>
         <CardContent className={classes.flexColumn}>
           <Typography variant="h6" className={classes.CardHead}>
             SignUp
@@ -47,19 +47,19 @@ const SignUp = () => {
             </Button>
           </Typography>
           <Typography variant="body2">
-            <CommonInput
+            <CustomInput
               label="Full Name*"
               placeholder="Enter your full name"
               propName="email"
             />
-            <CommonInput
+            <CustomInput
               label="Email Address*"
               placeholder="Enter your email address"
               propName="email"
             />
             <Typography className={classes.jobAction} sx={{ mb: 2 }}>
               <Typography>
-                <InputLabel className={classes.jobAction}>
+                <InputLabel Label className={classes.jobAction}>
                   <Typography className={classes.createInputLabel}>
                     Create Password*
                   </Typography>
@@ -73,7 +73,7 @@ const SignUp = () => {
                 />
               </Typography>
               <Typography>
-                <InputLabel className={classes.jobAction}>
+                <InputLabel Label className={classes.jobAction}>
                   <Typography className={classes.createInputLabel}>
                     Confirm Password*
                   </Typography>
@@ -87,7 +87,7 @@ const SignUp = () => {
                 />
               </Typography>
             </Typography>
-            <CommonInput
+            <CustomInput
               label="Skills*"
               placeholder="Enter your skills"
               propName="skills"
@@ -109,7 +109,7 @@ const SignUp = () => {
             </Typography>
           </Typography>
         </CardContent>
-      </CommonGrid>
+      </CustomGrid>
     </>
   );
 };

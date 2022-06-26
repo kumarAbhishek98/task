@@ -4,7 +4,7 @@ import useStyles from "../../pages/styles";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
 
-const CommonPostJob = ({ postAJob }) => {
+const CustomPostJob = ({ postAJob }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -27,4 +27,4 @@ const CommonPostJob = ({ postAJob }) => {
   );
 };
 
-export default CommonPostJob;
+export default CustomPostJob;

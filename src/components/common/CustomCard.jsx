@@ -2,7 +2,7 @@ import { Box, Card, CardContent, Grid, Typography } from "@mui/material";
 import React from "react";
 import useStyles from "../../pages/styles";
 
-const CommonCard = ({ children, title }) => {
+const CustomCard = ({ children, title }) => {
   const classes = useStyles();
   return (
     <>
@@ -28,4 +28,4 @@ const CommonCard = ({ children, title }) => {
   );
 };
 
-export default CommonCard;
+export default CustomCard;

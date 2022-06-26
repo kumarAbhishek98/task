@@ -1,9 +1,8 @@
 import { Button, CardContent, Typography } from "@mui/material";
 import React from "react";
 import NavBar from "../components/NavBar";
-import CommonGrid from "../components/common/CommonGrid";
-import CommonInput from "../components/common/CommonInput";
-import Input from "../components/common/Input";
+import CustomGrid from "../components/common/CustomGrid";
+import CustomInput from "../components/common/CustomInput";
 import useStyles from "./styles";
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +16,7 @@ const ResetPassword = () => {
   return (
     <>
       <NavBar login={true} />
-      <CommonGrid>
+      <CustomGrid>
         <CardContent className={classes.flexColumn}>
           <Typography variant="h6" className={classes.CardHead}>
             Reset Your Password
@@ -26,12 +25,12 @@ const ResetPassword = () => {
             Enter your new password below.
           </Typography>
           <Typography variant="body2">
-            <CommonInput
+            <CustomInput
               label="Email address"
               placeholder="Enter your email"
               propName="email"
             />
-            <CommonInput
+            <CustomInput
               label="Password"
               placeholder="Enter your password"
               propName="email"
@@ -47,7 +46,7 @@ const ResetPassword = () => {
             </Typography>
           </Typography>
         </CardContent>
-      </CommonGrid>
+      </CustomGrid>
     </>
   );
 };
