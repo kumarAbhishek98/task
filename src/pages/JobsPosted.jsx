@@ -27,7 +27,7 @@ import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import CloseIcon from "@mui/icons-material/Close";
 import { styled } from "@mui/system";
-import { FetchAllJobs, FetchOneJob } from "../services/JobsServices";
+import { FetchAllJobs, FetchJobsByPages, FetchOneJob } from "../services/JobsServices";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -92,25 +92,20 @@ const JobsPosted = () => {
     setPostedJobs(res.data.data);
   };
 
+  const paginatedJobs = async(num) => {
+    const res = await FetchJobsByPages(num);
+    setPostedJobs(res.data.data);
+  }
+
   useEffect(() => {
     fetchJobs();
   }, []);
 
-  console.log(postedJobs);
-
-  const pageIncrementHandler = () => {
-    setPageCount((prev) => prev + 1);
-  };
-
-  const pageDecrementHandler = () => {
-    if (pageCount > 1) {
-      setPageCount((prev) => prev - 1);
+  useEffect(() => {
+    if(pageCount > 1) {
+      paginatedJobs(pageCount);
     }
-  };
-
-  const homeHandler = () => {
-    navigate("/login/jobsPosted");
-  };
+  }, [pageCount]);
 
   return (
     <>
@@ -118,7 +113,7 @@ const JobsPosted = () => {
       <Grid item xs={6} className={classes.grid1Job}>
         <Typography className={classes.grid1JobPosted}>
           <HomeIcon className={classes.HomeIcon} />
-          <Typography className={classes.Home} onClick={homeHandler}>
+          <Typography className={classes.Home} onClick={() => navigate("/login/jobsPosted")}>
             Home
           </Typography>
         </Typography>
@@ -173,8 +168,11 @@ const JobsPosted = () => {
               >
                 <Typography
                   className={classes.iconContainer}
-                  onClick={pageDecrementHandler}
-                  sx={{}}
+                  onClick={() => {
+                    if (pageCount > 1) {
+                      setPageCount((prev) => prev - 1);
+                    }
+                  }}
                 >
                   <ArrowLeftIcon
                     sx={{
@@ -189,7 +187,7 @@ const JobsPosted = () => {
                   {pageCount}
                 </Typography>
                 <Typography
-                  onClick={pageIncrementHandler}
+                  onClick={() => setPageCount((prev) => prev + 1)}
                   className={classes.iconContainerRight}
                 >
                   <ArrowRightIcon

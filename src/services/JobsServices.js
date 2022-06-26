@@ -17,3 +17,12 @@ export const FetchAllJobs = async () => {
     console.log(error);
   }
 };
+
+export const FetchJobsByPages = async (pageNo) => {
+  try {
+    let response = await API.get(`/recruiters/jobs?page=${pageNo}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
